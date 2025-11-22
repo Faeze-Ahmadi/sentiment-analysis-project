@@ -11,11 +11,13 @@ def train_logreg(X_train, y_train):
     Returns the trained model.
     """
     model = LogisticRegression(
-        max_iter=1000,      # We let it run for 1000 times until it converges well.
+        # We let it run for 1000 times until it converges well.
+        max_iter=1000,
         n_jobs=-1           # Use all CPU cores for more speed
     )
     model.fit(X_train, y_train)
-    print("Model training finished!") # For my own test, the output was slow to print because the data was too heavy.
+    # For my own test, the output was slow to print because the data was too heavy.
+    print("Model training finished!")
     return model
 
 
@@ -25,7 +27,8 @@ if __name__ == "__main__":
     texts, labels = load_reviews(base)
 
     # 2) Convert texts to TF-IDF vectors and split into train/test
-    X_train, X_test, y_train, y_test, vectorizer = vectorize_texts(texts, labels)
+    X_train, X_test, y_train, y_test, vectorizer = vectorize_texts(
+        texts, labels)
 
     # 3) Train the Logistic Regression model
     model = train_logreg(X_train, y_train)
@@ -38,4 +41,5 @@ if __name__ == "__main__":
     print(f"Accuracy: {acc:.4f}")
 
     print("\nDetailed classification report:")
-    print(classification_report(y_test, y_pred, target_names=["negative", "positive"]))
+    print(classification_report(y_test, y_pred,
+          target_names=["negative", "positive"]))
