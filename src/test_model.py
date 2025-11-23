@@ -20,7 +20,7 @@ def predict_sentiment(text, model, vectorizer):
     # Predict (0 = negative, 1 = positive)
     pred = model.predict(X)[0]
 
-    return "POSITIVE 😊" if pred == 1 else "NEGATIVE 😡"
+    return "POSITIVE :)" if pred == 1 else "NEGATIVE :("
 
 
 if __name__ == "__main__":
